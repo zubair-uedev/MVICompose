@@ -1,34 +1,18 @@
 package com.example.mvicompose.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.mvicompose.presentation.dashboard.DashBoard
+import com.example.mvicompose.presentation.detaildata.DetailData
 import com.example.mvicompose.presentation.onboard.OnBoardScreen
 import com.example.mvicompose.presentation.spalsh.SplashScreen
 import com.example.mvicompose.routes.Routes
 
 @Composable
 fun Navigation() {
-//    val navController = rememberNavController()
-//    NavHost(navController = navController, startDestination = Routes.SplashRoute) {
-//        composable<Routes.SplashRoute> {
-//            SplashScreen(goToSplash = {
-//                navController.navigate(Routes.OnBoardRoute)
-//            })
-//        }
-//        composable<Routes.OnBoardRoute> {
-//            OnBoardScreen(goToOnBoard = {
-//                navController.navigate(Routes.DashBoardRoute)
-//            })
-//        }
-//        composable<Routes.DashBoardRoute> {
-//            DashBoard()
-//        }
-//    }
-    val backStack = remember { mutableStateListOf<Routes>(Routes.SplashRoute) }
+    val backStack = rememberNavBackStack(Routes.SplashRoute)
     NavDisplay(
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
@@ -44,7 +28,8 @@ fun Navigation() {
             }
             entry<Routes.OnBoardRoute> {
                 OnBoardScreen(
-                    goToOnBoard = {
+                    goToDashBoard = {
+                        backStack.removeAll(backStack)
                         backStack.add(
                             Routes.DashBoardRoute
                         )
@@ -53,6 +38,9 @@ fun Navigation() {
             }
             entry<Routes.DashBoardRoute> {
                 DashBoard()
+            }
+            entry<Routes.DataDetailRoute> {
+                DetailData()
             }
         }
     )
