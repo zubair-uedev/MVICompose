@@ -6,6 +6,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.mvicompose.presentation.dashboard.DashBoard
+import com.example.mvicompose.presentation.dashboard.DashBoardEvent
+import com.example.mvicompose.presentation.dashboard.DashBoardViewModel
 import com.example.mvicompose.presentation.detaildata.DetailData
 import com.example.mvicompose.presentation.onboard.OnBoardEvent
 import com.example.mvicompose.presentation.onboard.OnBoardScreen
@@ -38,7 +40,7 @@ fun Navigation() {
                 SplashScreen(onIntent = splashViewModel::onIntent)
             }
             entry<Routes.OnBoardRoute> {
-                val onBoardViewModel: OnBoardViewModel= viewModel()
+                val onBoardViewModel: OnBoardViewModel = viewModel()
                 LaunchedEffect(Unit) {
                     onBoardViewModel.onBoardEvent.collect { event ->
                         when (event) {
@@ -55,7 +57,19 @@ fun Navigation() {
                 )
             }
             entry<Routes.DashBoardRoute> {
-                DashBoard()
+                val dashBoardViewModel: DashBoardViewModel = viewModel()
+                LaunchedEffect(Unit) {
+                    dashBoardViewModel.dashBoardEvent.collect { event ->
+                        when (event) {
+                            DashBoardEvent.NavigateDetailEvent -> {
+                                backStack.add(
+                                    Routes.DataDetailRoute
+                                )
+                            }
+                        }
+                    }
+                }
+                DashBoard(onIntent = dashBoardViewModel::onIntent)
             }
             entry<Routes.DataDetailRoute> {
                 DetailData()

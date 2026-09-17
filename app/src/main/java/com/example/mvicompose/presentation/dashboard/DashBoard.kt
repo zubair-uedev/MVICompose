@@ -7,17 +7,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+
 @Preview(showBackground = true)
 @Composable
 fun DashBoardPreview() {
-    DashBoard()
+    DashBoard(onIntent = {})
 }
+
 @Composable
-fun DashBoard() {
+fun DashBoard(onIntent: (DashBoardIntent) -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         Text(text = "DashBoard")
         Column(modifier = Modifier.fillMaxSize()) {
-            Button(onClick = {}) {
+            Button(onClick = {
+                onIntent(DashBoardIntent.NavigateToDetail)
+            }) {
                 Text(text = "this is DashBoard Screen")
             }
         }
