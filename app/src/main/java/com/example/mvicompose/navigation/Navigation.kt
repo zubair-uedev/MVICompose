@@ -39,7 +39,7 @@ fun Navigation() {
                 SplashScreen(onIntent = splashViewModel::onIntent)
             }
             entry<Routes.OnBoardRoute> {
-                val onBoardViewModel: OnBoardViewModel = viewModel()
+                val onBoardViewModel: OnBoardViewModel= viewModel()
                 LaunchedEffect(Unit) {
                     onBoardViewModel.onBoardEvent.collect { event ->
                         when (event) {
