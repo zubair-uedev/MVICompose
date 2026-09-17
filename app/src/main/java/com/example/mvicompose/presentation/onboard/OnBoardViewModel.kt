@@ -12,9 +12,9 @@ class OnBoardViewModel() : ViewModel() {
 
     fun onIntent(onBoardingIntent: OnBoardingIntent) {
         when (onBoardingIntent) {
-            OnBoardingIntent.OnBoardIntent -> {
+            OnBoardingIntent.GoToDashBoard -> {
                 viewModelScope.launch {
-                    _onBoardEvent.emit(OnBoardEvent.GotoDashBoard)
+                    _onBoardEvent.emit(OnBoardEvent.onBoardEvent)
                 }
             }
 
@@ -24,9 +24,9 @@ class OnBoardViewModel() : ViewModel() {
 }
 
 sealed class OnBoardingIntent {
-    data object OnBoardIntent : OnBoardingIntent()
+    data object GoToDashBoard : OnBoardingIntent()
 }
 
 sealed class OnBoardEvent {
-    data object GotoDashBoard : OnBoardEvent()
+    data object onBoardEvent : OnBoardEvent()
 }

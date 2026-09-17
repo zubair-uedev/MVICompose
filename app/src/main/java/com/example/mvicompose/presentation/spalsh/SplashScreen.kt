@@ -29,10 +29,6 @@ fun SplashScreenPreview() {
 
 @Composable
 fun SplashScreen(onIntent: (SplashIntent) -> Unit) {
-
-    LaunchedEffect(Unit) {
-
-    }
     Column(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -48,7 +44,7 @@ fun SplashScreen(onIntent: (SplashIntent) -> Unit) {
 
             ) {
                 Text(
-                    text = "Go to Splash",
+                    text = "Go to OnBoard",
                     fontSize = 15.sp,
                     modifier = Modifier.padding(15.dp)
                 )

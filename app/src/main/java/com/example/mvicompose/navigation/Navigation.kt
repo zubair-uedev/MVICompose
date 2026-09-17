@@ -8,7 +8,9 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.mvicompose.presentation.dashboard.DashBoard
 import com.example.mvicompose.presentation.detaildata.DetailData
+import com.example.mvicompose.presentation.onboard.OnBoardEvent
 import com.example.mvicompose.presentation.onboard.OnBoardScreen
+import com.example.mvicompose.presentation.onboard.OnBoardViewModel
 import com.example.mvicompose.presentation.spalsh.SplashEvents
 import com.example.mvicompose.presentation.spalsh.SplashScreen
 import com.example.mvicompose.presentation.spalsh.SplashViewModel
@@ -37,13 +39,20 @@ fun Navigation() {
                 SplashScreen(onIntent = splashViewModel::onIntent)
             }
             entry<Routes.OnBoardRoute> {
-                OnBoardScreen(
-                    goToDashBoard = {
-                        backStack.removeAll(backStack)
-                        backStack.add(
-                            Routes.DashBoardRoute
-                        )
+                val onBoardViewModel: OnBoardViewModel = viewModel()
+                LaunchedEffect(Unit) {
+                    onBoardViewModel.onBoardEvent.collect { event ->
+                        when (event) {
+                            OnBoardEvent.onBoardEvent -> {
+                                backStack.add(
+                                    Routes.DashBoardRoute
+                                )
+                            }
+                        }
                     }
+                }
+                OnBoardScreen(
+                    onIntent = onBoardViewModel::onIntent,
                 )
             }
             entry<Routes.DashBoardRoute> {

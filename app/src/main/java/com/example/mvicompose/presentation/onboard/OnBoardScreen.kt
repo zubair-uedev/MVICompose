@@ -22,11 +22,11 @@ import com.example.mvicompose.ui.theme.Blue40
 @Preview(showBackground = true)
 @Composable
 fun OnBoardScreenPreview() {
-    OnBoardScreen(goToDashBoard = {})
+    OnBoardScreen(onIntent = {})
 }
 
 @Composable
-fun OnBoardScreen(goToDashBoard: () -> Unit) {
+fun OnBoardScreen(onIntent: (OnBoardingIntent) -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -48,7 +48,7 @@ fun OnBoardScreen(goToDashBoard: () -> Unit) {
             Column() {
                 Button(
                     onClick = {
-                        goToDashBoard()
+                        onIntent(OnBoardingIntent.GoToDashBoard)
                     },
                     modifier = Modifier
                         .fillMaxWidth()
