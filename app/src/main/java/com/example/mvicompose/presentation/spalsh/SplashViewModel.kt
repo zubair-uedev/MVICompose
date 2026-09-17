@@ -1,5 +1,4 @@
 package com.example.mvicompose.presentation.spalsh
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,12 +13,11 @@ class SplashViewModel() : ViewModel() {
         when (splashIntent) {
             SplashIntent.GoToOnBoard -> {
                 viewModelScope.launch {
-                    _events.emit(SplashEvents.NavigateEvent)
+                    _events.emit(SplashEvents.NavigateToOnBoard)
                 }
             }
         }
     }
-
 }
 
 sealed class SplashIntent {
@@ -27,5 +25,5 @@ sealed class SplashIntent {
 }
 
 sealed class SplashEvents {
-    data object NavigateEvent : SplashEvents()
+    data object NavigateToOnBoard : SplashEvents()
 }

@@ -1,5 +1,4 @@
 package com.example.mvicompose.navigation
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -28,7 +27,7 @@ fun Navigation() {
                 LaunchedEffect(Unit) {
                     splashViewModel.events.collect { events ->
                         when (events) {
-                            SplashEvents.NavigateEvent -> {
+                            SplashEvents.NavigateToOnBoard -> {
                                 backStack.add(
                                     Routes.OnBoardRoute
                                 )
@@ -39,7 +38,7 @@ fun Navigation() {
                 SplashScreen(onIntent = splashViewModel::onIntent)
             }
             entry<Routes.OnBoardRoute> {
-                val onBoardViewModel: OnBoardViewModel = viewModel()
+                val onBoardViewModel: OnBoardViewModel= viewModel()
                 LaunchedEffect(Unit) {
                     onBoardViewModel.onBoardEvent.collect { event ->
                         when (event) {
