@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-
 class SplashViewModel() : ViewModel() {
     private val _events = MutableSharedFlow<SplashEvents>()
     val events = _events.asSharedFlow()
