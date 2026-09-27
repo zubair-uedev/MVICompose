@@ -8,7 +8,10 @@ import androidx.navigation3.ui.NavDisplay
 import com.example.mvicompose.presentation.dashboard.DashBoard
 import com.example.mvicompose.presentation.dashboard.DashBoardEvent
 import com.example.mvicompose.presentation.dashboard.DashBoardViewModel
+import com.example.mvicompose.presentation.detaildata.AlertDailoogeBox
+import com.example.mvicompose.presentation.detaildata.CounterScreen
 import com.example.mvicompose.presentation.detaildata.DetailData
+import com.example.mvicompose.presentation.detaildata.ToggleColorPreview
 import com.example.mvicompose.presentation.onboard.OnBoardEvent
 import com.example.mvicompose.presentation.onboard.OnBoardScreen
 import com.example.mvicompose.presentation.onboard.OnBoardViewModel
@@ -72,7 +75,10 @@ fun Navigation() {
                 DashBoard(onIntent = dashBoardViewModel::onIntent)
             }
             entry<Routes.DataDetailRoute> {
-                DetailData()
+                //DetailData()
+              //  CounterScreen()
+                //ToggleColorPreview()
+                AlertDailoogeBox()
             }
         }
     )
